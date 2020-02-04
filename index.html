@@ -4,9 +4,11 @@
 <head>
     <title>로또</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             margin: 0px 0px 0px 0px;
+            background: orange;
         }
 
         div {
@@ -17,10 +19,14 @@
         .header {
             padding-top: 50px;
             height: 200px;
-            background: orange;
             color: white;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-size: 140%;
+        }
+
+        .content {
+            background: white;
+            border-radius: 8px;
         }
 
         .button {
@@ -42,10 +48,10 @@
 
 <body>
     <div class="header">
-        <h1>인생 역전 가자!<br>로또 번호 생성</h1>
+        <h1>이번주는 내가 1등!<br>인생 역전 가자!</h1>
     </div>
 
-    <div>
+    <div class="content">
         <button class="button" type="button" onclick="document.getElementById('demo').innerHTML = Date()">
             번호 생성</button>
 
@@ -59,7 +65,7 @@
     </div>
     <script>
 
-        document.getElementById("demo").innerHTML = "fuck";
+        document.getElementById("demo").innerHTML = "";
     </script>
 </body>
 
