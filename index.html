@@ -272,21 +272,21 @@
             for (i = 0; i < 8; i++) {
                 if (i == 6) {
                     ctx.beginPath();
-                    ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                    ctx.arc(i * 50 + 40, 25, 20, 0, 2 * Math.PI, false);
                     ctx.fillStyle = "white";
                     ctx.fill();
                     ctx.closePath();
                     ctx.fillStyle = "black";
-                    ctx.fillText("+", i * 60 + 40, 32);
+                    ctx.fillText("+", i * 50 + 40, 32);
                 }
                 else {
                     ctx.beginPath();
-                    ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                    ctx.arc(i * 50 + 40, 25, 20, 0, 2 * Math.PI, false);
                     ctx.fillStyle = "orange";
                     ctx.fill();
                     ctx.closePath();
                     ctx.fillStyle = "white";
-                    ctx.fillText("?", i * 60 + 40, 32);
+                    ctx.fillText("?", i * 50 + 40, 32);
                 }
 
             }
