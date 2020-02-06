@@ -101,11 +101,11 @@
         <div class="randoms">
             <p style="font-size: 30px;font-weight: 500;padding-top: 30px;margin-bottom: 50px;">번호 추천</p>
 
-            <canvas id="canvas1" height="80" width="500" style="align-self: center;"></canvas>
-            <canvas id="canvas2" height="80" width="500" style="align-self: center;"></canvas>
-            <canvas id="canvas3" height="80" width="500" style="align-self: center;"></canvas>
-            <canvas id="canvas4" height="80" width="500" style="align-self: center;"></canvas>
-            <canvas id="canvas5" height="80" width="500" style="align-self: center;"></canvas>
+            <canvas id="canvas1" height="80" width="400" style="align-self: center;"></canvas>
+            <canvas id="canvas2" height="80" width="400" style="align-self: center;"></canvas>
+            <canvas id="canvas3" height="80" width="400" style="align-self: center;"></canvas>
+            <canvas id="canvas4" height="80" width="400" style="align-self: center;"></canvas>
+            <canvas id="canvas5" height="80" width="400" style="align-self: center;"></canvas>
 
             <button class="button" type="button" style="width: 40%; align-self:center; margin-top: 40px;"
                 onclick="lotto()">GO</button>
@@ -272,21 +272,21 @@
             for (i = 0; i < 8; i++) {
                 if (i == 6) {
                     ctx.beginPath();
-                    ctx.arc(i * 50 + 40, 25, 20, 0, 2 * Math.PI, false);
+                    ctx.arc(i * 50+25, 25, 20, 0, 2 * Math.PI, false);
                     ctx.fillStyle = "white";
                     ctx.fill();
                     ctx.closePath();
                     ctx.fillStyle = "black";
-                    ctx.fillText("+", i * 50 + 40, 32);
+                    ctx.fillText("+", i * 50+25, 32);
                 }
                 else {
                     ctx.beginPath();
-                    ctx.arc(i * 50 + 40, 25, 20, 0, 2 * Math.PI, false);
+                    ctx.arc(i * 50+25 , 25, 20, 0, 2 * Math.PI, false);
                     ctx.fillStyle = "orange";
                     ctx.fill();
                     ctx.closePath();
                     ctx.fillStyle = "white";
-                    ctx.fillText("?", i * 50 + 40, 32);
+                    ctx.fillText("?", i * 50+25, 32);
                 }
 
             }
@@ -331,14 +331,14 @@
                     switch (Math.ceil(myNum[i] / 10)) {
                         case 1:
                             ctx.beginPath();
-                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.arc(i * 50 + 25, 25, 20, 0, 2 * Math.PI, false);
                             ctx.fillStyle = "rgb(250,196,0)";
                             ctx.fill();
                             ctx.closePath();
                             break;
                         case 2:
                             ctx.beginPath();
-                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.arc(i * 50 + 25, 25, 20, 0, 2 * Math.PI, false);
                             ctx.fillStyle = "rgb(104,200,242)";
                             ctx.fill();
                             ctx.closePath();
@@ -346,14 +346,14 @@
 
                         case 3:
                             ctx.beginPath();
-                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.arc(i * 50 + 25, 25, 20, 0, 2 * Math.PI, false);
                             ctx.fillStyle = "rgb(254,114,114)";
                             ctx.fill();
                             ctx.closePath();
                             break;
                         case 4:
                             ctx.beginPath();
-                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.arc(i * 50 + 25, 25, 20, 0, 2 * Math.PI, false);
                             ctx.fillStyle = "rgb(170,170,170)";
                             ctx.fill();
                             ctx.closePath();
@@ -361,26 +361,26 @@
 
                         case 5:
                             ctx.beginPath();
-                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.arc(i * 50 + 25, 25, 20, 0, 2 * Math.PI, false);
                             ctx.fillStyle = "rgb(176,216,65)";
                             ctx.fill();
                             ctx.closePath();
                             break;
                     }
                     ctx.fillStyle = "white";
-                    ctx.fillText(myNum[i], i * 60 + 40, 32);
+                    ctx.fillText(myNum[i], i * 50 + 25, 32);
                 }
                 switch (Math.ceil(myNum[6] / 10)) {
                     case 1:
                         ctx.beginPath();
-                        ctx.arc(7 * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.arc(7 * 50 + 25, 25, 20, 0, 2 * Math.PI, false);
                         ctx.fillStyle = "rgb(250,196,0)";
                         ctx.fill();
                         ctx.closePath();
                         break;
                     case 2:
                         ctx.beginPath();
-                        ctx.arc(7 * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.arc(7 * 50 + 25, 25, 20, 0, 2 * Math.PI, false);
                         ctx.fillStyle = "rgb(104,200,242)";
                         ctx.fill();
                         ctx.closePath();
@@ -388,14 +388,14 @@
 
                     case 3:
                         ctx.beginPath();
-                        ctx.arc(7 * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.arc(7 * 50 + 25, 25, 20, 0, 2 * Math.PI, false);
                         ctx.fillStyle = "rgb(254,114,114)";
                         ctx.fill();
                         ctx.closePath();
                         break;
                     case 4:
                         ctx.beginPath();
-                        ctx.arc(7 * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.arc(7 * 50 + 25, 25, 20, 0, 2 * Math.PI, false);
                         ctx.fillStyle = "rgb(170,170,170)";
                         ctx.fill();
                         ctx.closePath();
@@ -410,7 +410,7 @@
                         break;
                 }
                 ctx.fillStyle = "white";
-                ctx.fillText(myNum[6], 7 * 60 + 40, 32);
+                ctx.fillText(myNum[6], 7 * 50 + 25, 32);
             }
         }
     </script>
