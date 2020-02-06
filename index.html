@@ -43,11 +43,12 @@
 
         .content {
             background: white;
-            border-radius: 8px;
+            border-radius: 20px;
+            margin-bottom: 80px;
         }
 
         .button {
-            background-color: red;
+            background-color: orange;
             /* Green */
             border: none;
             color: white;
@@ -60,12 +61,21 @@
             cursor: pointer;
             border-radius: 8px;
         }
+
+        .randoms {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 
 <body>
-    <h1 class="header">로또같은 인생<br>인생 역전 가자!</h1>
-    <table style="width: 100%;color: orange; padding-top: 30px;">
+    <h1 class="header"><span id="title_lotto">ㅂㅅ</span>같은 인생<br>당신이 <span id="title_num"
+            style="color: orange;">1</span>등!</h1>
+    <table style="width: 100%;color: orange; padding-top: 20px;">
         <tr>
             <th id="Dsun">D-6</th>
             <th id="Dmon">D-5</th>
@@ -78,27 +88,30 @@
     </table>
     <table style="width: 100%;color: white; padding-top: 0px;padding-bottom: 10px;">
         <tr>
-            <th id ="sun">일</th>
-            <th id ="mon">월</th>
-            <th id ="twe">화</th>
-            <th id ="wen">수</th>
-            <th id ="thu">목</th>
-            <th id ="fri">금</th>
-            <th id ="sat" style="color: red;">토</th>
+            <th id="sun">일</th>
+            <th id="mon">월</th>
+            <th id="twe">화</th>
+            <th id="wen">수</th>
+            <th id="thu">목</th>
+            <th id="fri">금</th>
+            <th id="sat">토</th>
         </tr>
     </table>
     <div class="content">
-        <p style="font-size: 30px;font-weight: 500;padding-top: 30px; color: orange;">추천 번호</p>
+        <div class="randoms">
+            <p style="font-size: 30px;font-weight: 500;padding-top: 30px;margin-bottom: 50px;">번호 추천</p>
 
-        <button class="button" type="button" onclick="lotto()">
-            기운을 모아! 얍!</button>
-        <div id="number"
-            style="font-size:20px;border:1px solid;width:150px;height:20px;text-align:center;padding:10px;"></div>
-        <canvas id="canvas" height="50" width="360"></canvas>
-        <canvas id="canvas" height="50" width="360"></canvas>
-        <canvas id="canvas" height="50" width="360"></canvas>
-        <canvas id="canvas" height="50" width="360"></canvas>
-        <canvas id="canvas" height="50" width="360"></canvas>
+            <canvas id="canvas1" height="80" width="500" style="align-self: center;"></canvas>
+            <canvas id="canvas2" height="80" width="500" style="align-self: center;"></canvas>
+            <canvas id="canvas3" height="80" width="500" style="align-self: center;"></canvas>
+            <canvas id="canvas4" height="80" width="500" style="align-self: center;"></canvas>
+            <canvas id="canvas5" height="80" width="500" style="align-self: center;"></canvas>
+
+            <button class="button" type="button" style="width: 40%; align-self:center; margin-top: 40px;"
+                onclick="lotto()">GO</button>
+
+        </div>
+
 
         <hr>
 
@@ -107,7 +120,7 @@
         <p style="padding: 0px;margin: 0px;"><span id=result_year></span>년 <span id=result_month></span>월 <span
                 id=result_date></span>일</p>
 
-        <iframe style="width: 100%; height: 800px;margin-top: 30px;" scrolling="no" frameborder="0"
+        <iframe style="width: 100%; height: 800px;margin-top: 30px;margin-bottom: 100px;" scrolling="no" frameborder="0"
             src="https://m.dhlottery.co.kr/gameResult.do?method=byWin">결과 사이트</iframe>
     </div>
 
@@ -127,9 +140,29 @@
         document.getElementById("result_month").innerHTML = that_date.getMonth() + 1;
         document.getElementById("result_date").innerHTML = that_date.getDate();
 
+
+
         $(document).ready(function () {
-            if(now.getDay()>=1){
-                $("#sun").fadeOut(3000);
+            $("#title_lotto").fadeOut(2000);
+            $("#title_lotto").fadeIn(500);
+            setTimeout(function () {
+                var title_lotto = document.getElementById("title_lotto");
+                title_lotto.style.color = "red";
+                document.getElementById("title_lotto").innerHTML = "로또";
+
+            }, 2000);
+
+            $("#title_num").fadeOut(3000);
+            $("#title_num").fadeIn(500);
+            setTimeout(function () {
+                var title_num = document.getElementById("title_num");
+                title_num.style.color = "red";
+                document.getElementById("title_num").innerHTML = "1";
+            }, 3000);
+
+
+            if (now.getDay() >= 1) {
+                $("#sun").fadeOut(4000);
                 $("#sun").fadeIn(1000);
                 setTimeout(function () {
                     var sun = document.getElementById("sun");
@@ -137,7 +170,7 @@
                 }, 3000);
             }
             if (now.getDay() >= 2) {
-                $("#mon").fadeOut(4000);
+                $("#mon").fadeOut(5000);
                 $("#mon").fadeIn(1000);
                 setTimeout(function () {
                     var mon = document.getElementById("mon");
@@ -145,7 +178,7 @@
                 }, 3500);
             }
             if (now.getDay() >= 3) {
-                $("#twe").fadeOut(5000);
+                $("#twe").fadeOut(6000);
                 $("#twe").fadeIn(1000);
                 setTimeout(function () {
                     var twe = document.getElementById("twe");
@@ -153,7 +186,7 @@
                 }, 4000);
             }
             if (now.getDay() >= 4) {
-                $("#wen").fadeOut(6000);
+                $("#wen").fadeOut(7000);
                 $("#wen").fadeIn(1000);
                 setTimeout(function () {
                     var wen = document.getElementById("wen");
@@ -161,7 +194,7 @@
                 }, 4500);
             }
             if (now.getDay() >= 5) {
-                $("#thu").fadeOut(7000);
+                $("#thu").fadeOut(8000);
                 $("#thu").fadeIn(1000);
                 setTimeout(function () {
                     var thu = document.getElementById("thu");
@@ -169,7 +202,7 @@
                 }, 5000);
             }
             if (now.getDay() >= 6) {
-                $("#fri").fadeOut(8000);
+                $("#fri").fadeOut(9000);
                 $("#fri").fadeIn(1000);
                 setTimeout(function () {
                     var fri = document.getElementById("fri");
@@ -185,13 +218,13 @@
             $("#Dfri").fadeOut(0);
             $("#Dsat").fadeOut(0);
 
-            $("#Dsun").fadeIn(3000);
-            $("#Dmon").fadeIn(4000);
-            $("#Dtwe").fadeIn(5000);
-            $("#Dwen").fadeIn(6000);
-            $("#Dthu").fadeIn(7000);
-            $("#Dfri").fadeIn(8000);
-            $("#Dsat").fadeIn(9000);
+            $("#Dsun").fadeIn(4000);
+            $("#Dmon").fadeIn(5000);
+            $("#Dtwe").fadeIn(6000);
+            $("#Dwen").fadeIn(7000);
+            $("#Dthu").fadeIn(8000);
+            $("#Dfri").fadeIn(9000);
+            $("#Dsat").fadeIn(10000);
 
 
             if (now.getDay() == 0) {
@@ -220,59 +253,134 @@
             }
             if (now.getDay() == 6) {
                 var Dsat = document.getElementById("Dsat");
-                var left = 20-now.getHours();
+                var left = 20 - now.getHours();
                 Dsat.style.color = "red";
-                document.getElementById("Dsat").innerHTML = left + "h";
+                if (left < 10)
+                    Dsat.style.paddingRight = "5px"
+                document.getElementById("Dsat").innerHTML = left + "H";
             }
         });
-        
-        
 
-        function lotto() {
-            var ctx = document.getElementById("canvas").getContext("2d");
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            lottoNum = new Array(45);
-
-            for (i = 0; i < 45; i++) {
-                lottoNum[i] = i + 1;
-            }
-
-            var rNum;
-            myNum = new Array(6);
-            for (i = 0; i < 6; i++) {
-                rNum = parseInt(Math.random() * lottoNum.length);
-                myNum[i] = lottoNum[rNum];
-                lottoNum.splice(rNum, 1); //해당 배열 한칸 줄임
-            }
-
-            for (i = 0; i < 6; i++) {
-                for (j = 0; j <= i; j++) {
-                    if (myNum[i] <= myNum[j]) {
-                        k = myNum[i];
-                        myNum[i] = myNum[j];
-                        myNum[j] = k;
-                    }
-                }
-            }
-
-            document.getElementById('number').innerHTML = myNum;
+        for (j = 1; j < 6; j++) {
+            var what_canvas = "canvas" + j;
+            var ctx = document.getElementById(what_canvas).getContext("2d");
+            ctx.clearRect(0, 0, what_canvas.width, what_canvas.height);
 
             ctx.font = '22px Arial';
             ctx.textAlign = "center";
-            //    ctx.textBaseLine = "middle";
 
-            for (i = 0; i < 6; i++) {
-                switch (Math.ceil(myNum[i] / 10)) {
+            for (i = 0; i < 8; i++) {
+                if (i == 6) {
+                    ctx.beginPath();
+                    ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                    ctx.fillStyle = "white";
+                    ctx.fill();
+                    ctx.closePath();
+                    ctx.fillStyle = "black";
+                    ctx.fillText("+", i * 60 + 40, 32);
+                }
+                else {
+                    ctx.beginPath();
+                    ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                    ctx.fillStyle = "orange";
+                    ctx.fill();
+                    ctx.closePath();
+                    ctx.fillStyle = "white";
+                    ctx.fillText("?", i * 60 + 40, 32);
+                }
+
+            }
+        }
+
+
+
+        function lotto() {
+            for (a = 1; a < 6; a++) {
+                var where_canvas = "canvas" + a;
+                var ctx = document.getElementById(where_canvas).getContext("2d");
+                ctx.clearRect(0, 0, where_canvas.width, where_canvas.height);
+                lottoNum = new Array(45);
+
+                for (i = 0; i < 45; i++) {
+                    lottoNum[i] = i + 1;
+                }
+
+                var rNum;
+                myNum = new Array(7);
+                for (i = 0; i < 7; i++) {
+                    rNum = parseInt(Math.random() * lottoNum.length);
+                    myNum[i] = lottoNum[rNum];
+                    lottoNum.splice(rNum, 1); //해당 배열 한칸 줄임
+                }
+
+                for (i = 0; i < 6; i++) {
+                    for (j = 0; j <= i; j++) {
+                        if (myNum[i] <= myNum[j]) {
+                            k = myNum[i];
+                            myNum[i] = myNum[j];
+                            myNum[j] = k;
+                        }
+                    }
+                }
+
+
+                ctx.font = '22px Arial';
+                ctx.textAlign = "center";
+
+                for (i = 0; i < 6; i++) {
+                    switch (Math.ceil(myNum[i] / 10)) {
+                        case 1:
+                            ctx.beginPath();
+                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.fillStyle = "rgb(250,196,0)";
+                            ctx.fill();
+                            ctx.closePath();
+                            break;
+                        case 2:
+                            ctx.beginPath();
+                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.fillStyle = "rgb(104,200,242)";
+                            ctx.fill();
+                            ctx.closePath();
+                            break;
+
+                        case 3:
+                            ctx.beginPath();
+                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.fillStyle = "rgb(254,114,114)";
+                            ctx.fill();
+                            ctx.closePath();
+                            break;
+                        case 4:
+                            ctx.beginPath();
+                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.fillStyle = "rgb(170,170,170)";
+                            ctx.fill();
+                            ctx.closePath();
+                            break;
+
+                        case 5:
+                            ctx.beginPath();
+                            ctx.arc(i * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
+                            ctx.fillStyle = "rgb(176,216,65)";
+                            ctx.fill();
+                            ctx.closePath();
+                            break;
+                    }
+                    ctx.fillStyle = "white";
+                    ctx.fillText(myNum[i], i * 60 + 40, 32);
+                }
+                switch (Math.ceil(myNum[6] / 10)) {
                     case 1:
                         ctx.beginPath();
-                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.arc(7 * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
                         ctx.fillStyle = "rgb(250,196,0)";
                         ctx.fill();
                         ctx.closePath();
                         break;
                     case 2:
                         ctx.beginPath();
-                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.arc(7 * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
                         ctx.fillStyle = "rgb(104,200,242)";
                         ctx.fill();
                         ctx.closePath();
@@ -280,14 +388,14 @@
 
                     case 3:
                         ctx.beginPath();
-                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.arc(7 * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
                         ctx.fillStyle = "rgb(254,114,114)";
                         ctx.fill();
                         ctx.closePath();
                         break;
                     case 4:
                         ctx.beginPath();
-                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.arc(7 * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
                         ctx.fillStyle = "rgb(170,170,170)";
                         ctx.fill();
                         ctx.closePath();
@@ -295,15 +403,14 @@
 
                     case 5:
                         ctx.beginPath();
-                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.arc(7 * 60 + 40, 25, 20, 0, 2 * Math.PI, false);
                         ctx.fillStyle = "rgb(176,216,65)";
                         ctx.fill();
                         ctx.closePath();
                         break;
-
                 }
                 ctx.fillStyle = "white";
-                ctx.fillText(myNum[i], i * 60 + 30, 32);
+                ctx.fillText(myNum[6], 7 * 60 + 40, 32);
             }
         }
     </script>
