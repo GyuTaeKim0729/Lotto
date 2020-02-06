@@ -5,15 +5,26 @@
     <title>로또</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <style>
         body {
             margin: 0px 0px 0px 0px;
             background: orange;
             text-align: center;
+
+            padding-bottom: 100px;
         }
 
         div {
             border: 0px;
+        }
+
+        p,
+        span {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 30px;
+            font-weight: 500;
+
         }
 
         .header {
@@ -47,23 +58,108 @@
 
 <body>
 
-    <h1 class="header">이번주는 내가 1등!<br>인생 역전 가자!</h1>
-
+    <h1 class="header">로또같은 인생<br>인생 역전 가자!</h1>
     <div class="content">
-        <button class="button" type="button" onclick="document.getElementById('demo').innerHTML = Date()">
-            번호 생성</button>
+        <button class="button" type="button" onclick="lotto()">
+            5개 생성</button>
+        <div id="number" style="font-size:20px;border:1px solid;width:150px;height:20px;text-align:center;padding:10px;"></div>
+        <canvas id="canvas" height="50" width="360"></canvas>
+        <canvas id="canvas" height="50" width="360"></canvas>
+        <canvas id="canvas" height="50" width="360"></canvas>
+        <canvas id="canvas" height="50" width="360"></canvas>
+        <canvas id="canvas" height="50" width="360"></canvas>
+        <p style="padding-top: 20px;"><span id="round" style="color: #C4411F;"></span> 당첨 결과</p>
 
-        <p id="demo"></p>
-
-        <p id="one">1회</p>
-        <p id="two">2회</p>
-        <p id="three">3회</p>
-        <p id="four">4회</p>
-        <p id="five">5회</p>
+        <iframe style="width: 100%; height: 800px;" src="https://m.dhlottery.co.kr/gameResult.do?method=byWin">결과 사이트</iframe>
     </div>
-    <script>
 
-        document.getElementById("demo").innerHTML = "";
+    <script>
+        var now = new Date();
+        var start_day = new Date(2020, 1, 1, 21);
+        var round = 896;
+        var what = Math.ceil((now - start_day) / (60 * 1000 * 60 * 24));
+        round = Math.floor(round + what / 7);
+        var test = 1;
+        document.getElementById("round").innerHTML = round + "회";
+
+        function lotto() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            lottoNum = new Array(45);
+
+            for (i = 0; i < 45; i++) {
+                lottoNum[i] = i + 1;
+            }
+
+            var rNum;
+            myNum = new Array(6);
+            for (i = 0; i < 6; i++) {
+                rNum = parseInt(Math.random() * lottoNum.length);
+                myNum[i] = lottoNum[rNum];
+                lottoNum.splice(rNum, 1); //해당 배열 한칸 줄임
+            }
+
+            for (i = 0; i < 6; i++) {
+                for (j = 0; j <= i; j++) {
+                    if (myNum[i] <= myNum[j]) {
+                        k = myNum[i];
+                        myNum[i] = myNum[j];
+                        myNum[j] = k;
+                    }
+                }
+            }
+
+            document.getElementById('number').innerHTML = myNum;
+
+            ctx.font = '22px Arial';
+            ctx.textAlign = "center";
+            //    ctx.textBaseLine = "middle";
+
+            for (i = 0; i < 6; i++) {
+                switch (Math.ceil(myNum[i] / 10)) {
+                    case 1:
+                        ctx.beginPath();
+                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.fillStyle = "rgb(250,196,0)";
+                        ctx.fill();
+                        ctx.closePath();
+                        break;
+                    case 2:
+                        ctx.beginPath();
+                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.fillStyle = "rgb(104,200,242)";
+                        ctx.fill();
+                        ctx.closePath();
+                        break;
+
+                    case 3:
+                        ctx.beginPath();
+                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.fillStyle = "rgb(254,114,114)";
+                        ctx.fill();
+                        ctx.closePath();
+                        break;
+                    case 4:
+                        ctx.beginPath();
+                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.fillStyle = "rgb(170,170,170)";
+                        ctx.fill();
+                        ctx.closePath();
+                        break;
+
+                    case 5:
+                        ctx.beginPath();
+                        ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+                        ctx.fillStyle = "rgb(176,216,65)";
+                        ctx.fill();
+                        ctx.closePath();
+                        break;
+
+                }
+                ctx.fillStyle = "white";
+                ctx.fillText(myNum[i], i * 60 + 30, 32);
+            }
+        }
     </script>
 </body>
 
