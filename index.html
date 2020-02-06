@@ -27,7 +27,7 @@
             height: 1px;
             border: 0px;
         }
-
+        h1,
         p,
         span,
         table {
@@ -60,12 +60,13 @@
             margin: 4px 2px;
             cursor: pointer;
             border-radius: 8px;
+            font-weight: bold;
         }
 
         .randoms {
             background: white;
             border-radius: 20px;
-            margin-bottom: 50px;
+            margin-bottom: 100px;
             display: flex;
             flex-direction: column;
         }
@@ -99,25 +100,25 @@
     </table>
     <div class="content">
         <div class="randoms">
-            <p style="font-size: 30px;font-weight: 500;padding-top: 30px;margin-bottom: 50px;">당첨 예상 번호</p>
+            <h1 style="font-size: 30px;font-weight: 500;padding-top: 50px;margin-bottom: 50px;color:#252525;">당첨 예상 번호</h1>
 
-            <canvas id="canvas1" height="80" width="370" style="align-self: center;"></canvas>
-            <canvas id="canvas2" height="80" width="370" style="align-self: center;"></canvas>
-            <canvas id="canvas3" height="80" width="370" style="align-self: center;"></canvas>
-            <canvas id="canvas4" height="80" width="370" style="align-self: center;"></canvas>
-            <canvas id="canvas5" height="80" width="370" style="align-self: center;"></canvas>
+            <canvas id="canvas1" height="80" width="360" style="align-self: center;"></canvas>
+            <canvas id="canvas2" height="80" width="360" style="align-self: center;"></canvas>
+            <canvas id="canvas3" height="80" width="360" style="align-self: center;"></canvas>
+            <canvas id="canvas4" height="80" width="360" style="align-self: center;"></canvas>
+            <canvas id="canvas5" height="80" width="360" style="align-self: center;"></canvas>
 
             <button class="button" type="button" style="width: 40%; align-self:center; margin-top: 40px;"
-                onclick="lotto()">GO</button>
+                onclick="lotto()" id="btn">GO</button>
 
         </div>
 
 
         <hr>
 
-        <p style="font-size: 30px;font-weight: 500;padding-top: 30px;margin: 0px;"><span id="round"
-                style="color: red;"></span> 당첨결과</p>
-        <p style="padding: 0px;margin: 0px;"><span id=result_year></span>년 <span id=result_month></span>월 <span
+        <h1 style="font-size: 30px;font-weight: 500;padding-top: 50px;margin: 0px;color:#252525;"><span id="round"
+                style="color: red;"></span> 당첨결과</h1>
+        <p style="padding: 0px;margin: 0px;color:#252525;"><span id=result_year></span>년 <span id=result_month></span>월 <span
                 id=result_date></span>일</p>
 
         <iframe style="width: 100%; height: 800px;margin-top: 30px;margin-bottom: 100px;" scrolling="no" frameborder="0"
@@ -125,7 +126,7 @@
     </div>
     <p style="color: white;">gyutae0729@gmail.com<br>당첨시 메일로 기프트콘 부탁드립니다.</p>
     <script>
-
+        var count = 0;
         var now = new Date();
         var start_day = new Date(2020, 1, 1, 21);
         var round = 896;
@@ -139,7 +140,7 @@
         document.getElementById("result_year").innerHTML = that_date.getFullYear();
         document.getElementById("result_month").innerHTML = that_date.getMonth() + 1;
         document.getElementById("result_date").innerHTML = that_date.getDate();
-
+        
 
 
         $(document).ready(function () {
@@ -294,6 +295,13 @@
 
 
         function lotto() {
+            if (count == 3)
+                document.getElementById("btn").innerHTML = "최소 5등";
+            else if (count == 10)
+                document.getElementById("btn").innerHTML = "진짜 1등";
+            else if (count == 20)
+                document.getElementById("btn").innerHTML = "그냥 자동하세요!";    
+            count++;
             for (a = 1; a < 6; a++) {
                 var where_canvas = "canvas" + a;
                 var ctx = document.getElementById(where_canvas).getContext("2d");
