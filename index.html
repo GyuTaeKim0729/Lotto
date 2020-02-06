@@ -5,33 +5,40 @@
     <title>로또</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <style>
         body {
             margin: 0px 0px 0px 0px;
             background: orange;
             text-align: center;
-
+            overflow-x: hidden;
             padding-bottom: 100px;
+            display: flex;
+            flex-direction: column;
         }
 
         div {
             border: 0px;
         }
 
-        p,
-        span {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            font-size: 30px;
-            font-weight: 500;
+        hr {
+            background-color: lightgray;
+            height: 1px;
+            border: 0px;
+        }
 
+        p,
+        span,
+        table {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         .header {
             color: white;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             margin-top: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 0px;
         }
 
         .content {
@@ -57,30 +64,169 @@
 </head>
 
 <body>
-
     <h1 class="header">로또같은 인생<br>인생 역전 가자!</h1>
+    <table style="width: 100%;color: orange; padding-top: 30px;">
+        <tr>
+            <th id="Dsun">D-6</th>
+            <th id="Dmon">D-5</th>
+            <th id="Dtwe">D-4</th>
+            <th id="Dwen">D-3</th>
+            <th id="Dthu">D-2</th>
+            <th id="Dfri">D-1</th>
+            <th id="Dsat">D-0</th>
+        </tr>
+    </table>
+    <table style="width: 100%;color: white; padding-top: 0px;padding-bottom: 10px;">
+        <tr>
+            <th id ="sun">일</th>
+            <th id ="mon">월</th>
+            <th id ="twe">화</th>
+            <th id ="wen">수</th>
+            <th id ="thu">목</th>
+            <th id ="fri">금</th>
+            <th id ="sat" style="color: red;">토</th>
+        </tr>
+    </table>
     <div class="content">
-        <button class="button" type="button" onclick="lotto()">
-            5개 생성</button>
-        <div id="number" style="font-size:20px;border:1px solid;width:150px;height:20px;text-align:center;padding:10px;"></div>
-        <canvas id="canvas" height="50" width="360"></canvas>
-        <canvas id="canvas" height="50" width="360"></canvas>
-        <canvas id="canvas" height="50" width="360"></canvas>
-        <canvas id="canvas" height="50" width="360"></canvas>
-        <canvas id="canvas" height="50" width="360"></canvas>
-        <p style="padding-top: 20px;"><span id="round" style="color: #C4411F;"></span> 당첨 결과</p>
+        <p style="font-size: 30px;font-weight: 500;padding-top: 30px; color: orange;">추천 번호</p>
 
-        <iframe style="width: 100%; height: 800px;" src="https://m.dhlottery.co.kr/gameResult.do?method=byWin">결과 사이트</iframe>
+        <button class="button" type="button" onclick="lotto()">
+            기운을 모아! 얍!</button>
+        <div id="number"
+            style="font-size:20px;border:1px solid;width:150px;height:20px;text-align:center;padding:10px;"></div>
+        <canvas id="canvas" height="50" width="360"></canvas>
+        <canvas id="canvas" height="50" width="360"></canvas>
+        <canvas id="canvas" height="50" width="360"></canvas>
+        <canvas id="canvas" height="50" width="360"></canvas>
+        <canvas id="canvas" height="50" width="360"></canvas>
+
+        <hr>
+
+        <p style="font-size: 30px;font-weight: 500;padding-top: 30px;margin: 0px;"><span id="round"
+                style="color: red;"></span> 당첨결과</p>
+        <p style="padding: 0px;margin: 0px;"><span id=result_year></span>년 <span id=result_month></span>월 <span
+                id=result_date></span>일</p>
+
+        <iframe style="width: 100%; height: 800px;margin-top: 30px;" scrolling="no" frameborder="0"
+            src="https://m.dhlottery.co.kr/gameResult.do?method=byWin">결과 사이트</iframe>
     </div>
 
     <script>
+
         var now = new Date();
         var start_day = new Date(2020, 1, 1, 21);
         var round = 896;
+        var temp_round;
         var what = Math.ceil((now - start_day) / (60 * 1000 * 60 * 24));
-        round = Math.floor(round + what / 7);
-        var test = 1;
-        document.getElementById("round").innerHTML = round + "회";
+        temp_round = Math.floor(round + what / 7);
+        document.getElementById("round").innerHTML = temp_round + "회";
+
+        var that_date = start_day;
+        that_date.setDate(that_date.getDate() + (temp_round - round) * 7);
+        document.getElementById("result_year").innerHTML = that_date.getFullYear();
+        document.getElementById("result_month").innerHTML = that_date.getMonth() + 1;
+        document.getElementById("result_date").innerHTML = that_date.getDate();
+
+        $(document).ready(function () {
+            if(now.getDay()>=1){
+                $("#sun").fadeOut(3000);
+                $("#sun").fadeIn(1000);
+                setTimeout(function () {
+                    var sun = document.getElementById("sun");
+                    sun.style.color = "orange";
+                }, 3000);
+            }
+            if (now.getDay() >= 2) {
+                $("#mon").fadeOut(4000);
+                $("#mon").fadeIn(1000);
+                setTimeout(function () {
+                    var mon = document.getElementById("mon");
+                    mon.style.color = "orange";
+                }, 3500);
+            }
+            if (now.getDay() >= 3) {
+                $("#twe").fadeOut(5000);
+                $("#twe").fadeIn(1000);
+                setTimeout(function () {
+                    var twe = document.getElementById("twe");
+                    twe.style.color = "orange";
+                }, 4000);
+            }
+            if (now.getDay() >= 4) {
+                $("#wen").fadeOut(6000);
+                $("#wen").fadeIn(1000);
+                setTimeout(function () {
+                    var wen = document.getElementById("wen");
+                    wen.style.color = "orange";
+                }, 4500);
+            }
+            if (now.getDay() >= 5) {
+                $("#thu").fadeOut(7000);
+                $("#thu").fadeIn(1000);
+                setTimeout(function () {
+                    var thu = document.getElementById("thu");
+                    thu.style.color = "orange";
+                }, 5000);
+            }
+            if (now.getDay() >= 6) {
+                $("#fri").fadeOut(8000);
+                $("#fri").fadeIn(1000);
+                setTimeout(function () {
+                    var fri = document.getElementById("fri");
+                    fri.style.color = "orange";
+                }, 5500);
+            }
+
+            $("#Dsun").fadeOut(0);
+            $("#Dmon").fadeOut(0);
+            $("#Dtwe").fadeOut(0);
+            $("#Dwen").fadeOut(0);
+            $("#Dthu").fadeOut(0);
+            $("#Dfri").fadeOut(0);
+            $("#Dsat").fadeOut(0);
+
+            $("#Dsun").fadeIn(3000);
+            $("#Dmon").fadeIn(4000);
+            $("#Dtwe").fadeIn(5000);
+            $("#Dwen").fadeIn(6000);
+            $("#Dthu").fadeIn(7000);
+            $("#Dfri").fadeIn(8000);
+            $("#Dsat").fadeIn(9000);
+
+
+            if (now.getDay() == 0) {
+                var Dsun = document.getElementById("Dsun");
+                Dsun.style.color = "white";
+            }
+            if (now.getDay() == 1) {
+                var Dmon = document.getElementById("Dmon");
+                Dmon.style.color = "white";
+            }
+            if (now.getDay() == 2) {
+                var Dtwe = document.getElementById("Dtwe");
+                Dtwe.style.color = "white";
+            }
+            if (now.getDay() == 3) {
+                var Dwen = document.getElementById("Dwen");
+                Dwen.style.color = "white";
+            }
+            if (now.getDay() == 4) {
+                var Dthu = document.getElementById("Dthu");
+                Dthu.style.color = "white";
+            }
+            if (now.getDay() == 5) {
+                var Dfri = document.getElementById("Dfri");
+                Dfri.style.color = "white";
+            }
+            if (now.getDay() == 6) {
+                var Dsat = document.getElementById("Dsat");
+                var left = 20-now.getHours();
+                Dsat.style.color = "red";
+                document.getElementById("Dsat").innerHTML = left + "h";
+            }
+        });
+        
+        
 
         function lotto() {
             var ctx = document.getElementById("canvas").getContext("2d");
